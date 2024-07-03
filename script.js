@@ -31,14 +31,21 @@ document.getElementById('availability-form').addEventListener('submit', function
     event.preventDefault();
 
     const teamName = document.getElementById('team-name').value;
+    const opponentName = document.getElementById('opponent-name').value;
     const saturdays = document.getElementById('saturdays').value;
+
+    if (teamName === opponentName) {
+        alert("A team cannot play against itself. Please select different teams.");
+        return;
+    }
     
     const teamList = document.getElementById('team-list');
     const listItem = document.createElement('li');
-    listItem.textContent = `${teamName}: ${new Date(saturdays).toDateString()}`;
+    listItem.textContent = `${teamName} vs ${opponentName} on ${new Date(saturdays).toDateString()}`;
     teamList.appendChild(listItem);
 
     document.getElementById('team-name').value = '';
+    document.getElementById('opponent-name').value = '';
     document.getElementById('saturdays').value = '';
 
     updateScheduledMatch();
@@ -46,9 +53,8 @@ document.getElementById('availability-form').addEventListener('submit', function
 
 function updateScheduledMatch() {
     const teamList = document.getElementById('team-list').getElementsByTagName('li');
-    if (teamList.length >= 2) {
-        const matchDetails = `${teamList[0].textContent.split(':')[0]} vs ${teamList[1].textContent.split(':')[0]}`;
-        document.getElementById('match-details').textContent = matchDetails;
+    if (teamList.length > 0) {
+        document.getElementById('match-details').textContent = teamList[teamList.length - 1].textContent;
     } else {
         document.getElementById('match-details').textContent = 'No match scheduled.';
     }
