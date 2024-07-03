@@ -1,4 +1,27 @@
 // script.js
+
+// Function to populate Saturdays
+function populateSaturdays() {
+    const saturdaysDropdown = document.getElementById('saturdays');
+    const today = new Date();
+    const endOfAugust = new Date(today.getFullYear(), 7, 31);
+
+    let currentDate = new Date(today);
+
+    while (currentDate <= endOfAugust) {
+        if (currentDate.getDay() === 6) {
+            const option = document.createElement('option');
+            option.value = currentDate.toDateString();
+            option.textContent = currentDate.toDateString();
+            saturdaysDropdown.appendChild(option);
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+}
+
+// Populate Saturdays on page load
+document.addEventListener('DOMContentLoaded', populateSaturdays);
+
 document.getElementById('availability-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
