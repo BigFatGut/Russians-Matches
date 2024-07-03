@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Availability</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Team Availability</h1>
+    <div id="scheduled-match">
+        <h2>Scheduled Match</h2>
+        <p id="match-details">No match scheduled.</p>
+    </div>
+    <div id="availability">
+        <h2>Team Availability</h2>
+        <form id="availability-form">
+            <label for="team-name">Team Name:</label>
+            <input type="text" id="team-name" name="team-name" required>
+            <label for="saturdays">Available Saturdays:</label>
+            <input type="text" id="saturdays" name="saturdays" placeholder="e.g. July 10, July 17" required>
+            <button type="submit">Submit</button>
+        </form>
+        <ul id="team-list">
+            <!-- Team availability will be listed here -->
+        </ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
